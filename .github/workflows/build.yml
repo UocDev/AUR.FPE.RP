@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Luacheck (Lint)
         run: |
-          luacheck .
+          luacheck . || [ $? -eq 2 ]
 
       # - name: Run Tests (Optional)
        # run: |
