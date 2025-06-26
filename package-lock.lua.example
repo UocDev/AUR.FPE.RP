@@ -1,0 +1,15 @@
+-- package-lock.lua
+return {
+    name = "[NAME_OF_PACKAGE]",
+    version = "1.0.0",
+    lockVersion = 1,
+
+    dependencies = {
+        -- Example dependency
+        -- ["uocdev/utility"] = {
+        --     version = "1.2.3",
+        --     resolved = "https://github.com/uocDev/...",
+        --     integrity = "sha256-abc123...",
+        -- }
+    }
+}
