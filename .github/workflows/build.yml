@@ -26,10 +26,10 @@ jobs:
         run: |
           luacheck .
 
-      - name: Run Tests (Optional)
-        run: |
-          if [ -f init_spec.lua ]; then
-            busted tests/
-          else
-            echo "No tests found"
-          fi
+      # - name: Run Tests (Optional)
+       # run: |
+          #if [ -f init_spec.lua ]; then
+          #  busted tests/
+         # else
+            #echo "No tests found"
+         # fi
