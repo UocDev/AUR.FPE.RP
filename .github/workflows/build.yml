@@ -1,0 +1,35 @@
+name: Lua Scan on Push
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  scan:
+    name: Lint and Test Lua Code
+    runs-on: ubuntu-latest
+    timeout-minutes: 5  
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Lua and Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lua5.4 luarocks
+          sudo luarocks install luacheck
+          sudo luarocks install busted
+
+      - name: Run Luacheck (Lint)
+        run: |
+          luacheck .
+
+      - name: Run Tests (Optional)
+        run: |
+          if [ -f init_spec.lua ]; then
+            busted tests/
+          else
+            echo "No tests found"
+          fi
