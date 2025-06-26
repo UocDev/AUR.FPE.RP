@@ -1,0 +1,12 @@
+-- package.lua
+return {
+    name = "[NAME_OF_PACKAGE]",
+    version = "1.0.0", -- rules, only start from 1.0.0
+    description = "", -- opsional description
+    author = "", -- require your roblox Username / Display name
+    license = "", -- Choose your License
+    repository = "https://github.com/UocDev/AUR.FPE.RP",
+    dependencies = {},
+    entry = "src/init", -- setup your default main entry point
+    tags = {""},
+}
