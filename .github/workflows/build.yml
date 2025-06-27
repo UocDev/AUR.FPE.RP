@@ -19,29 +19,16 @@ jobs:
           pacman -Sy --noconfirm archlinux-keyring
           pacman-key --init
           pacman-key --populate archlinux
-          pacman -Syu --noconfirm
-
-      - name: Install administrator permission
+          pacman -Syu --noconfirm 
+      
+      - name: Install AUR (Arch User Repository)
         run: |
-          pacman -S --noconfirm base-devel git sudo
-          useradd -m builder
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-      - name: Install Arch User Repository
-        run: git clone https://aur.archlinux.org/yay.git
-        working-directory: ${{ github.workspace }}
-        user: builder
-
-      - name: Build Arch User Repository
-        run: |
-          cd yay
-          makepkg -si --noconfirm
-        working-directory: ${{ github.workspace }}
-        user: builder
-
+          pacman -S --noconfirm --needed base-devel git
+          git clone https://aur.archlinux.org/yay.git
+          
       - name: Install Build Tools and Environment
         run: |
-          yay -S --noconfirm lua luarocks unzip zip
+          pacman -S --noconfirm base-devel lua luarocks git unzip zip
           luarocks install luacheck
           luarocks install busted
 
