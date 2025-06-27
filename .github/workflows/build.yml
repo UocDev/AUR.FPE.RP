@@ -25,12 +25,22 @@ jobs:
         run: |
           pacman -S --noconfirm --needed base-devel git
           git clone https://aur.archlinux.org/yay.git
+
+      - name: Install NPM and Node.js
+        run: |
+          pacman -S nodejs npm --noconfirm 
+          node -v 
+          npm -v
           
       - name: Install Build Tools and Environment
         run: |
           pacman -S --noconfirm base-devel lua luarocks git unzip zip
           luarocks install luacheck
-          luarocks install busted
+          luarocks install busted 
+
+      - name: Install Interpreter Roblox
+        run: |
+          npm install roblox-ts
 
       - name: Checkout Repository
         uses: actions/checkout@v4
