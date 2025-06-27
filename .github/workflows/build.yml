@@ -19,7 +19,14 @@ jobs:
           pacman -Sy --noconfirm archlinux-keyring
           pacman-key --init
           pacman-key --populate archlinux
-          pacman -Syu --noconfirm
+          pacman -Syu --noconfirm 
+      
+      - name: Install AUR (Arch User Repository)
+        run: |
+          sudo pacman -S --noconfirm --needed base-devel git
+          git clone https://aur.archlinux.org/yay.git
+          cd yay
+          makepkg -si --noconfirm
 
       - name: Install Build Tools and Environment
         run: |
