@@ -14,23 +14,21 @@ jobs:
       image: archlinux:latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Pacman and Keyring
+      - name: Update Operating System
         run: |
           pacman -Sy --noconfirm archlinux-keyring
           pacman-key --init
           pacman-key --populate archlinux
+          pacman -Syu --noconfirm
 
-      - name: Update System
-        run: pacman -Syu --noconfirm
-
-      - name: Install Lua and Tools
+      - name: Install Build Tools and Environment
         run: |
-          pacman -S --noconfirm lua luarocks
+          pacman -S --noconfirm base-devel lua luarocks git unzip zip
           luarocks install luacheck
           luarocks install busted
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Run Luacheck (Lint)
         run: |
