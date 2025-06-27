@@ -9,27 +9,29 @@ jobs:
   scan:
     name: Lint and Test Lua Code
     runs-on: ubuntu-latest
-    timeout-minutes: 5  
+
+    container:
+      image: archlinux:latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Setup Pacman and Keyring
+        run: |
+          pacman -Sy --noconfirm archlinux-keyring
+          pacman-key --init
+          pacman-key --populate archlinux
+
+      - name: Update System
+        run: pacman -Syu --noconfirm
+
       - name: Install Lua and Tools
         run: |
-          sudo apt-get update
-          sudo apt-get install -y lua5.4 luarocks
-          sudo luarocks install luacheck
-          sudo luarocks install busted
+          pacman -S --noconfirm lua luarocks
+          luarocks install luacheck
+          luarocks install busted
 
       - name: Run Luacheck (Lint)
         run: |
           luacheck . || [ $? -eq 2 ]
-
-      # - name: Run Tests (Optional)
-       # run: |
-          #if [ -f init_spec.lua ]; then
-          #  busted tests/
-         # else
-            #echo "No tests found"
-         # fi
