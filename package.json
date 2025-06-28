@@ -1,0 +1,8 @@
+{
+  "name": "startup",
+  "type": "module",
+  "main": "service.js",
+  "dependencies": {
+    "chalk": "^5.3.0"
+  }
+}
