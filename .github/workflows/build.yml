@@ -45,13 +45,12 @@ jobs:
           npm install @uocdev/math-fpe
           npm install chalk 
           npm fund
-
-      - name: Startup Services 
-        run: | 
-         node service.js
       
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Startup Services 
+        run: service.js
 
       - name: Run Luacheck (Lint)
         run: |
