@@ -47,8 +47,8 @@ jobs:
           npm fund
 
       - name: Startup Services 
-        run: |
-          node service
+        run: | 
+         node service.js
       
       - name: Checkout Repository
         uses: actions/checkout@v4
