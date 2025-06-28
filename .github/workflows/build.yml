@@ -43,8 +43,13 @@ jobs:
           npm install roblox-ts
           npm install @uocdev/timestamp-hasei
           npm install @uocdev/math-fpe
+          npm install chalk 
           npm fund
 
+      - name: Startup Services 
+        run: |
+          node ervice.js
+      
       - name: Checkout Repository
         uses: actions/checkout@v4
 
